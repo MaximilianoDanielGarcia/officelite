@@ -1,4 +1,8 @@
-# Astro Starter Kit: Basics
+# Officelite - Frontend Mentor's challenge
+
+- [Live site here](https://fancy-marigold-77383f.netlify.app/)
+
+## Astro Starter Kit: Basics
 
 ```sh
 npm create astro@latest -- --template basics
