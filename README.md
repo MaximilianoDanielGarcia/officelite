@@ -2,6 +2,10 @@
 
 - [Live site here](https://fancy-marigold-77383f.netlify.app/)
 
+## Screenshot
+
+![Screenshot](public/assets/images/screenshot.jpeg)
+
 ## Astro Starter Kit: Basics
 
 ```sh
