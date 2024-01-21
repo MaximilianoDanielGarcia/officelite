@@ -1,0 +1,228 @@
+---
+import Card from "../components/Card.astro";
+import Footer from "../components/Footer.astro";
+import Link from "../components/Link.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Officelite">
+	<main>
+		<section class="hero">
+			<article>
+				<div>
+					<h1>A simple solution to complex tasks is coming soon</h1>
+					<p>
+						Say goodbye to inefficient juggling of multiple apps,
+						teams, and projects. Officelite is the new collaboration
+						platform built with an intuitive interface to improve
+						productivity.
+					</p>
+				</div>
+				<Link
+					href="/login"
+					text="Get Started"
+					color="#fff"
+					bgColor="#5175ff"
+					withShadow
+					hoverBgColor="#829cff"
+				/>
+			</article>
+			<picture>
+				<source
+					srcset="/assets/images/intro_board.svg"
+					media="(width <= 750px)"
+				/>
+				<source
+					srcset="/assets/images/boardTab.svg"
+					media="(width <= 1250px)"
+				/>
+				<img src="/assets/images/boardDesk.svg" alt="A dashboard" />
+			</picture>
+		</section>
+
+		<section class="pricing-container">
+			<div class="pricing">
+				<Card
+					version="Basic"
+					price="Free"
+					description="Up to 5 users for free"
+					features={[
+						"Basic document collaboration",
+						"2 GB storage",
+						"Great security and support",
+					]}
+				/>
+
+				<Card
+					version="Pro"
+					price="$9.99"
+					description="Per user, billed monthly"
+					features={[
+						"All essential integrations",
+						"50 GB storage",
+						"More control and insights",
+					]}
+					recommended
+				/>
+
+				<Card
+					version="Ultimate"
+					price="$19.99"
+					description="Per user, billed monthly"
+					features={[
+						"Robust work management",
+						"100 GB storage",
+						"VIP support",
+					]}
+				/>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	main {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		width: 100%;
+	}
+
+	.hero {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		padding-inline: 11.5%;
+		padding-bottom: 120px;
+
+		& > article {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: start;
+			max-width: 540px;
+			gap: 32px;
+		}
+
+		& > article > div {
+			display: flex;
+			flex-direction: column;
+			gap: 24px;
+		}
+
+		& > article > div > h1 {
+			color: var(--dark-gray);
+			font-size: 56px;
+			font-weight: 700;
+			line-height: 64px;
+		}
+
+		& > article > div > p {
+			color: var(--gray);
+			font-size: 18px;
+			font-weight: 400;
+			line-height: 28px;
+		}
+
+		& > picture {
+			display: grid;
+			place-items: center;
+			animation: moving 10s forwards infinite ease-in-out;
+		}
+	}
+
+	.pricing-container {
+		display: grid;
+		place-items: center;
+		position: relative;
+		height: 254px;
+		width: 100%;
+	}
+
+	.pricing {
+		position: absolute;
+		display: flex;
+		gap: 30px;
+		top: 0;
+	}
+
+	@keyframes moving {
+		50% {
+			transform: translateY(-50px);
+		}
+
+		100% {
+			transform: translateY(0px);
+		}
+	}
+
+	@media screen and (width <= 1250px) {
+		.hero {
+			padding-inline: 5.2%;
+			padding-bottom: 140px;
+
+			& > article {
+				max-width: 345px;
+				gap: 24px;
+			}
+
+			& > article > div > h1 {
+				font-size: 40px;
+				line-height: 48px;
+			}
+
+			& > article > div > p {
+				font-size: 16px;
+				line-height: 26px;
+			}
+		}
+
+		.pricing-container {
+			height: 498px;
+		}
+
+		.pricing {
+			flex-direction: column;
+			gap: 24px;
+		}
+	}
+
+	@media screen and (width <= 750px) {
+
+		.hero {
+			flex-direction: column-reverse;
+			justify-content: center;
+			text-align: center;
+			padding-inline: 6.4%;
+			padding-bottom: 120px;
+			padding-top: 28px;
+
+			& > article {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				max-width: 100%;
+				gap: 32px;
+			}
+
+			& > article > div > h1 {
+				font-size: 40px;
+				line-height: 48px;
+			}
+
+			& > article > div > p {
+				font-size: 16px;
+				line-height: 26px;
+			}
+		}
+
+		.pricing-container {
+			height: 800px;
+		}
+	}
+</style>

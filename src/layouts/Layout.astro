@@ -1,0 +1,88 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import Header from '../components/Header.astro';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<title>{title}</title>
+		<ViewTransitions />
+	</head>
+	<body>
+		<Header />
+		<slot />
+	</body>
+</html>
+<style is:global>
+	:root {
+		--blue: #5175ff;
+		--pale: #829cff;
+		--dark-gray: #333950;
+		--black: #25293a;
+		--gray: #747b95;
+		--tomato: #f05b5b;
+	}
+
+	* {
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+	}
+
+	body {
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
+		align-items: center;
+		font-family: 'Kumbh Sans', sans-serif;
+		background-image: url('/assets/images/bg_intro_desk.svg');
+		background-repeat: no-repeat;
+		background-position: right top;
+		background-color: #fafafa;
+	}
+
+	@media screen and (width <= 900px) {
+		
+		body {
+			background-image: url('/assets/images/bg_intro_tab.svg');
+		}
+	}
+
+	@media screen and (width <= 750px) {
+		
+		body {
+			background-image: url('/assets/images/bg_header_mob.svg');
+			background-size: contain;
+			background-position: center top;
+			min-height: 100vh;
+		}
+	}
+</style>
+
+<script>
+	const links = document.querySelectorAll('a');
+
+	links.forEach((link) => {
+		link.addEventListener('click', (e) => {
+			e.stopPropagation();
+		});
+	});
+</script>

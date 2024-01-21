@@ -1,0 +1,184 @@
+---
+import Button from './Button.astro';
+
+interface Props {
+	version: string;
+	price: string;
+	description: string;
+	features: string[];
+	recommended?: boolean;
+}
+
+const { version, price, description, features, recommended } = Astro.props;
+
+const bgButton = recommended ? '#fff' : '#e4eaff';
+---
+
+<div class:list={['card', { special: recommended }]}>
+	<div>
+		<h2>{version}</h2>
+		<div class="price-container">
+			<p class="price"><strong>{price}</strong></p>
+			<p>{description}</p>
+		</div>
+	</div>
+	<ul>
+		{features.map(feature => <li>{feature}</li>)}
+	</ul>
+	<Button text='Try for Free' color='#5175FF' bgColor={bgButton} hoverBgColor='#d3dcff'/>
+</div>
+
+<style is:inline>
+	.card {
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
+		align-items: center;
+		text-align: center;
+		padding: 40px;
+		gap: 40px;
+		width: 350px;
+		height: 508px;
+		border-radius: 13px;
+		background-color: #fff;
+		color: var(--dark-gray);
+		box-shadow: 0px 50px 50px -25px rgba(75, 92, 154, 0.25);
+
+		& > div {
+			display: flex;
+			flex-direction: column;
+			justify-content: start;
+			align-items: center;
+			text-align: center;
+			gap: 40px;
+		}
+	}
+
+	h2 {
+		font-family: 'Kumbh Sans', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		line-height: 28px;
+	}
+
+	.price-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 100%;
+		height: 100px;
+	}
+
+	.price {
+		font-family: 'Kumbh Sans', sans-serif;
+		font-size: 56px;
+		font-weight: 700;
+		line-height: 64px;
+	}
+
+	ul {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		list-style: none;
+		opacity: 0.75;
+		padding-top: 16px;
+	}
+
+	.special {
+		background-image: url('/assets/images/item_bg_desk.svg');
+		color: #fff;
+	}
+
+	@media screen and (width <= 1250px) {
+		.card {
+			flex-direction: row;
+			justify-content: start;
+			align-items: start;
+			padding: 48px;
+			gap: 177px;
+			width: 689px;
+			height: 316px;
+			position: relative;
+
+			& > div {
+				align-items: start;
+				gap: 16px;
+			}
+		}
+
+		.card > button {
+			position: absolute;
+			top: 212px;
+			left: 48px;
+		}
+
+		.price-container {
+			align-items: start;
+			width: 100%;
+			min-width: 175px;
+			height: 96px;
+		}
+
+		ul {
+			align-items: start;
+			padding-top: 44px;
+			min-width: 189px;
+		}
+
+		ul > li {
+			font-family: 'Kumbh Sans', sans-serif;
+			font-size: 16px;
+			font-weight: 400;
+			line-height: 28px;
+		}
+
+		.special {
+			background-image: url('/assets/images/item_bg_tab.svg');
+			background-color: var(--blue);
+			background-repeat: no-repeat;
+			background-size: contain;
+		}
+	}
+
+	@media screen and (width <= 750px) {
+		.card {
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			padding: 40px;
+			gap: 32px;
+			width: 327px;
+			height: 508px;
+			position: relative;
+
+			& > div {
+				align-items: center;
+				gap: 40px;
+			}
+		}
+
+		.card > button {
+			position: initial;
+			top: 0;
+			left: 0;
+		}
+
+		.price-container {
+			align-items: center;
+			min-width: 100%;
+			height: 100px;
+		}
+
+		ul {
+			align-items: center;
+			padding-top: 24px;
+			min-width: 189px;
+		}
+
+		.special {
+			background-image: url('/assets/images/item_bg_desk.svg');
+		}
+	}
+
+</style>

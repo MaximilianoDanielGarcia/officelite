@@ -1,0 +1,167 @@
+<div class="select" data-state="closed">
+    <p id="option-selected">Basic Pack <span>Free</span></p>
+    <img src="/assets/images/arrow_mob.svg" alt="" />
+
+    <ul class="options">
+        <li data-value="basic" class="selected">
+            <p>Basic Pack <span>Free</span></p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" viewBox="0 0 14 12" fill="none">
+                <path d="M1 7.50438L3.9944 10.4988L13.4932 1" stroke="#5175FF" stroke-width="2"/>
+            </svg>
+        </li>
+        <li data-value="pro">
+            <p>Pro Pack <span>$9.99</span></p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" viewBox="0 0 14 12" fill="none">
+                <path d="M1 7.50438L3.9944 10.4988L13.4932 1" stroke="#5175FF" stroke-width="2"/>
+            </svg>
+        </li>
+        <li data-value="ultimate">
+            <p>Ultimate Pack <span>$19.99</span></p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" viewBox="0 0 14 12" fill="none">
+                <path d="M1 7.50438L3.9944 10.4988L13.4932 1" stroke="#5175FF" stroke-width="2"/>
+            </svg>
+        </li>
+    </ul>
+</div>
+
+<style is:global>
+    .select {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 16px;
+        height: 27px;
+        position: relative;
+        cursor: pointer;
+
+        & > #option-selected {
+            color: var(--dark-gray);
+            font-family: "Kumbh Sans", sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 28px;
+        }
+
+        & > #option-selected > span {
+            color: var(--gray);
+            opacity: 0.5;
+            padding-left: 8px;
+        }
+    }
+
+    .select[data-state="closed"] .options {
+        max-height: 0px;
+        overflow: hidden;
+        padding: 0 24px;
+    }
+
+    .select[data-state="opened"] .options {
+        max-height: 198px;
+        padding: 24px 32px;
+    }
+
+    .select[data-state="opened"] > img {
+        transform: rotateX(180deg);
+    }
+
+    .options {
+        position: absolute;
+        top: 42px;
+        right: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 367px;
+        height: 198px;
+        list-style: none;
+        background: #fff;
+        color: var(--dark-gray);
+        font-family: "Kumbh Sans", sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 28px;
+        border-radius: 8px;
+        box-shadow: 0px 50px 50px -25px rgba(75, 92, 154, 0.75);
+        cursor: default;
+        transition-property: max-height, padding;
+        transition-duration: 0.4s, 0.2s;
+        transition-timing-function: ease;
+        padding: 24px 32px;
+        border: 1px solid rgba(51, 57, 80, 0.15);
+        z-index: 10;
+    }
+
+    .options > li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        padding-block: 16px;
+        border-bottom: 1px solid #cacaca;
+
+        & > p > span {
+            color: var(--gray);
+            opacity: 0.5;
+            padding-left: 8px;
+        }
+
+        & > svg {
+            display: none;
+        }
+    }
+
+    .options > li:last-of-type {
+        border: none;
+    }
+
+    .selected > svg {
+        display: block !important;
+    }
+
+    @media screen and (width <= 750px) {
+        .options {
+            width: 100%;
+        }
+    }
+</style>
+<script>
+    const select = document.querySelector(".select");
+    const optionSelected = document.getElementById("option-selected");
+    const options = select.querySelectorAll(".options > li");
+
+    options.forEach((option) => {
+        option.addEventListener("click", () => {
+            const selectedValue = option.getAttribute("data-value");
+
+            removeSelected();
+
+            option.classList.add('selected');
+
+            if (selectedValue === "basic") {
+                optionSelected.innerHTML = "Basic Pack <span>Free</span>";
+            } else if (selectedValue === "pro") {
+                optionSelected.innerHTML = "Pro Pack <span>$9.99</span>";
+            } else if (selectedValue === "ultimate") {
+                optionSelected.innerHTML = "Ultimate Pack <span>$19.99</span>";
+            }
+        });
+    });
+
+    const toggle = () => {
+        const state = select.getAttribute("data-state");
+        if (state === "closed") {
+            select.setAttribute("data-state", "opened");
+        } else {
+            select.setAttribute("data-state", "closed");
+        }
+    };
+
+    const removeSelected = () => {
+        options.forEach((option) => {
+            option.classList.remove('selected');
+        })
+    }
+
+    select.addEventListener("click", toggle);
+</script>

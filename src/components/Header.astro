@@ -1,0 +1,39 @@
+<header>
+    <img src="/assets/images/logo.svg" alt="">
+    <p class="brand">officelite</p>
+</header>
+
+<style>
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        width: 100%;
+        gap: 8px;
+        padding-block: 81px;
+        padding-inline: 11.5%;
+    }
+
+    .brand {
+        color: var(--dark-gray);
+        font-family: 'Kumbh Sans', sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        padding-bottom: 4px;
+    }
+
+    @media screen and (width <= 1250px) {
+        header {
+            padding-inline: 5.2%;
+            padding-block: 72px;
+        }
+    }
+
+    @media screen and (width <= 750px) {
+        header {
+            padding-inline: 6.4%;
+            padding-block: 46px;
+            justify-content: center;
+        }
+    }
+</style>

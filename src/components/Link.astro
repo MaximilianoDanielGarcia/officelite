@@ -1,0 +1,60 @@
+---
+interface Props {
+    href: string;
+    text: string;
+    color: string;
+    bgColor: string;
+    hoverColor?: string;
+    hoverBgColor?: string;
+    fullWidth?: boolean;
+    withShadow?: boolean;
+}
+
+const {
+    href,
+    text,
+    color,
+    bgColor,
+    fullWidth,
+    withShadow,
+    hoverColor = color,
+    hoverBgColor = bgColor,
+} = Astro.props;
+
+const width = fullWidth ? "100%" : "171px";
+const shadow = withShadow
+    ? "0px 25px 25px -10px rgba(63, 91, 194, 0.25)"
+    : "none";
+
+---
+
+<a href={href}>{text}</a>
+
+<style define:vars={{ color, bgColor, width, shadow, hoverColor, hoverBgColor }}>
+    a {
+        display: grid;
+        place-items: center;
+        height: 56px;
+        min-width: var(--width);
+        background: var(--bgColor);
+        color: var(--color);
+        border-radius: 28px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 700;
+        font-family: "Kumbh Sans", sans-serif;
+        line-height: 28px;
+        box-shadow: var(--shadow);
+        transition-property: background, color;
+        transition-duration: .2s;
+        transition-timing-function: ease;
+        text-decoration: none;
+    }
+
+    a:hover {
+        background: var(--hoverBgColor);
+        color: var(--hoverColor);
+    }
+
+</style>
